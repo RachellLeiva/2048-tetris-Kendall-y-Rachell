@@ -1,0 +1,104 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cuadro {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(5, 80px);
+  gap: 10px;
+  background: #ddd;
+  padding: 10px;
+  border-radius: 12px;
+}
+.botones {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  gap: 20px;               /* espacio entre botones */
+  margin-bottom: 20px;     /* separación respecto al tablero */
+}
+
+.button-play,
+.button-pause,
+.button-report {
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: #9be49e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+.celda {
+  background: #eee;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 24px;
+  transition: all 0.3s ease; /* animación al cambiar de número */
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.1); /* sombra interna */
+  color: #333;
+}
+
+.celda.arriba {
+  background: #ffeb99;
+  border-color: #f0c000;
+}
+
+/* colores según número */
+.celda[data-valor="2"]    { background: #fcefe6; color: #776e65; }
+.celda[data-valor="4"]    { background: #f2d179; color: #776e65; }
+.celda[data-valor="8"]    { background: #f59563; color: #fff; }
+.celda[data-valor="16"]   { background: #f57c5f; color: #fff; }
+.celda[data-valor="32"]   { background: #f65e3b; color: #fff; }
+.celda[data-valor="64"]   { background: #ed2e10; color: #fff; }
+.celda[data-valor="128"]  { background: #fce330; color: #333; }
+.celda[data-valor="256"]  { background: #f8b500; color: #fff; }
+.celda[data-valor="512"]  { background: #f59200; color: #fff; }
+.celda[data-valor="1024"] { background: #f57f00; color: #fff; }
+.celda[data-valor="2048"] { background: #f55e00; color: #fff; }
+
+#mensajeJuego {
+  display: none;                /* oculto por defecto */
+  position: fixed;              /* queda encima de todo */
+  top: 50%;                     /* centrado vertical */
+  left: 50%;                    /* centrado horizontal */
+  transform: translate(-50%, -50%);
+  background-color: rgba(0,0,0,0.8); /* fondo semi-transparente */
+  color: #fff;                  /* texto blanco */
+  font-size: 2.5rem;            /* grande */
+  font-weight: bold;
+  padding: 2rem 4rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  z-index: 1000;                /* encima de todo */
+  animation: aparecer 0.5s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translate(-50%, -60%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
