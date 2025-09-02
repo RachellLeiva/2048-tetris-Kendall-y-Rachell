@@ -160,9 +160,10 @@ function sumarLasDeArriba(j2) {
         }
 
         actualizarVista();
+        //revisa si ya ganó
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < 4; j++) {
-              if (matriz[i][j] === 16){
+              if (matriz[i][j] === 32){
                 goal = true;
               }
             }  
