@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let juegoTerminado = false;
   let fichaActiva = null; // { fila, columna }
   let intervaloActual = null;
-
+  let goal= 128;
+  let iniciado= false;
 
 
   function calcularSuma() {
@@ -159,6 +160,18 @@ function sumarLasDeArriba(j2) {
         }
 
         actualizarVista();
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 4; j++) {
+              if (matriz[i][j] === 16){
+                goal = true;
+              }
+            }  
+        }  
+
+
+
+
+
       },1000);
     });
   }
@@ -169,19 +182,61 @@ function sumarLasDeArriba(j2) {
         await new Promise(res => setTimeout(res, 500)); 
         continue; 
       }
+      if(goal== true){
+        mensaje.textContent = "¡Juego Terminado!";
+        mensaje.style.display = "block";
+        juegoTerminado = true;
+        return null;
+      }
+      
       let col = crearNuevaPieza();
       if (col === null) break; 
       await soltarPieza(col);  
     }
+  }
+  function reiniciarJuego(){
+    // limpiar matriz
+    for (let i=0; i<5; i++) {
+      for (let j=0; j<4; j++) {
+        matriz[i][j] = 0;
+      }
+    }
+    // limpiar estados
+    fichaActiva = null;
+    pausado = false;
+    juegoTerminado = false;
+    tiempo = 0;
+    movimientos = 0;
+
+    // detener intervalos activos
+    if (intervaloActual) {
+      clearInterval(intervaloActual);
+      intervaloActual = null;
+    }
+
+    // limpiar vista
+    actualizarVista();
+    actualizarReportes();
+
+    // ocultar mensaje
+    mensaje.style.display = "none";
+
+    // resetear texto de botones
+    btnPausar.textContent = "PAUSAR";
   }
 
   // Botón jugar
   btnJugar.addEventListener('click', () => {
     mensaje.style.display = "none";
     juegoTerminado = false;
+    if (iniciado==true){
+      reiniciarJuego();
+    }
     loopJuego();
+    iniciado=true;
     tiempo = 0;
     movimientos = 0;
+    btnJugar.textContent = "REINICIAR";
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
       if (!pausado && !juegoTerminado) {
