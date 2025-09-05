@@ -1,3 +1,4 @@
+//en la línea 167 se cambia el número con el que gana, esta en 2048 pero se puede bajar
 document.addEventListener('DOMContentLoaded', () => {  
 
   const matriz = [
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let pausado = false;   
   let juegoTerminado = false;
-  let fichaActiva = null; // { fila, columna }
+  let fichaActiva = null; 
   let intervaloActual = null;
   let goal= 128;
   let iniciado= false;
@@ -163,7 +164,7 @@ function sumarLasDeArriba(j2) {
         //revisa si ya ganó
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < 4; j++) {
-              if (matriz[i][j] === 32){
+              if (matriz[i][j] === 2048){
                 goal = true;
               }
             }  
@@ -219,10 +220,10 @@ function sumarLasDeArriba(j2) {
     actualizarVista();
     actualizarReportes();
 
-    // ocultar mensaje
+    
     mensaje.style.display = "none";
 
-    // resetear texto de botones
+  
     btnPausar.textContent = "PAUSAR";
   }
 
@@ -285,11 +286,10 @@ btnReport.addEventListener('click', () => {
   if (matriz[fila+1][col] === 0) {
     matriz[fila+1][col] = matriz[fila][col];
     matriz[fila][col] = 0;
-    fichaActiva.fila++; // 👈 no olvidés actualizar la posición de la ficha
+    fichaActiva.fila++; 
   }
       // unión con la izquierda
-      else if (matriz[fila+1][col] === matriz[fila][col]) {       //ACA
-        sumarPiezas(fila,col,fila+1,col);
+      else if (matriz[fila+1][col] === matriz[fila][col]) {       
         sumarLasDeArriba(col)
       }
     
@@ -302,7 +302,7 @@ btnReport.addEventListener('click', () => {
         fichaActiva.col--;
       }
       // unión con la izquierda
-      else if (matriz[fila][col-1] === matriz[fila][col]) {       //ACA
+      else if (matriz[fila][col-1] === matriz[fila][col]) {       
         sumarPiezas(fila,col,fila,col-1);
         fichaActiva.col--;
         sumarLasDeArriba(col-1)
@@ -317,7 +317,7 @@ btnReport.addEventListener('click', () => {
         fichaActiva.col++;
       }
       // unión con la derecha
-      else if (matriz[fila][col+1] === matriz[fila][col]) {       //ACA
+      else if (matriz[fila][col+1] === matriz[fila][col]) {       
         sumarPiezas(fila,col,fila,col+1);
         fichaActiva.col++;
         sumarLasDeArriba(col+1)

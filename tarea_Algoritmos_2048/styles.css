@@ -31,9 +31,9 @@ h1 {
 }
 .botones {
   display: flex;
-  justify-content: center; /* centra horizontalmente */
-  gap: 20px;               /* espacio entre botones */
-  margin-bottom: 20px;     /* separación respecto al tablero */
+  justify-content: center;
+  gap: 20px;               
+  margin-bottom: 20px;     
 }
 
 .button-play,
@@ -81,20 +81,20 @@ h1 {
 .celda[data-valor="2048"] { background: #f55e00; color: #fff; }
 
 #mensajeJuego {
-  display: none;                /* oculto por defecto */
-  position: fixed;              /* queda encima de todo */
-  top: 50%;                     /* centrado vertical */
-  left: 50%;                    /* centrado horizontal */
+  display: none;               
+  position: fixed;             
+  top: 50%;                    
+  left: 50%;                   
   transform: translate(-50%, -50%);
-  background-color: rgba(0,0,0,0.8); /* fondo semi-transparente */
-  color: #fff;                  /* texto blanco */
-  font-size: 2.5rem;            /* grande */
+  background-color: rgba(0,0,0,0.8); 
+  color: #fff;                
+  font-size: 2.5rem;            
   font-weight: bold;
   padding: 2rem 4rem;
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  z-index: 1000;                /* encima de todo */
+  z-index: 1000;                
   animation: aparecer 0.5s ease-out;
 }
 
@@ -114,5 +114,5 @@ h1 {
   padding: 20px;
   box-shadow: -2px 0 5px rgba(0,0,0,0.1);
   font-family: Arial, sans-serif;
-  display: none; /* oculto al inicio */
+  display: none; 
 }
